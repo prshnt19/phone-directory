@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import PhoneDirectory
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse
+
 
 # Create your views here.
 
@@ -25,3 +27,15 @@ def addsubscriber(request):
 def delete(request, id):
     PhoneDirectory.objects.get(id=id).delete()
     return HttpResponseRedirect('/')
+
+
+def add_name(request):
+    name = request.POST.get('name')
+    data = {'name': name}
+    return JsonResponse(data)
+
+
+def add_number(request):
+    number = request.POST.get('number')
+    data = {'number': number}
+    return JsonResponse(data)

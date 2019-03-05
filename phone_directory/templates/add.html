@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Phone Directory</title>
   {% load static %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -9,6 +9,7 @@
     <script>
     document.getElementById('name').innerHTML = document.getElementsByName('name').values().toString();
 </script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.8.0.min.js' %}"></script>
 </head>
 <body>
     <section class="navigation">
@@ -25,16 +26,58 @@
 
 <form action="addsubscriber" method="post">
 {% csrf_token %}
-  Name: <input type="text" id="name" name="name" />
+  Name: <input type="text" id="name" name="name" placeholder="Name"/>
     <br><br>
-  Number: <input type="number" id="number" name="number"/>
+  Number: <input type="number" id="number" name="number" placeholder="Number"/>
     <br><br>
   <br>
   <input type="submit" value="Add" name="button" class="button"/> <input type="reset" class="button">
 </form>
+    <br><br>
+
+Name : <label id="lname" ></label><br>
+Number : <label id="lnumber"></label>
 
 </body>
-{#    <script>#}
-{#    document.getElementById('name').innerHTML = "hh";#}
-{#</script>#}
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#name').keyup(function () {
+            var name = $(this).val();
+            $.ajax({
+                url: "/add/name/",
+                type: "POST",
+                data: {
+                    'name': name,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                cache: false,
+                dataType: 'json',
+                success: function (resp) {
+                    document.getElementById('lname').innerText = name;
+                }
+            })
+        })
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#number').keyup(function () {
+            var number = $(this).val();
+            $.ajax({
+                url:"/add/number/",
+                type:"POST",
+                data:{
+                    'number':number,
+                    'csrfmiddlewaretoken':'{{ csrf_token }}'
+                },
+                cache:false,
+                dataType:'json',
+                success: function (resp) {
+                    document.getElementById('lnumber').innerText = number;
+                }
+            })
+        })
+    });
+</script>
 </html>
