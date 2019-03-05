@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 def phonedir(request):
     subscibers = (PhoneDirectory.objects.all())
-    return render(request, 'index.html', {'subscribers': subscibers})
+    return render(request, '../index.html', {'subscribers': subscibers})
 
 
 def add(request):
