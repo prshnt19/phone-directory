@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Directory</title>
+  {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script>
+    document.getElementById('name').innerHTML = document.getElementsByName('name').values().toString();
+</script>
+</head>
+<body>
+    <section class="navigation">
+  <div class="nav-container">
+    <div class="back">
+      <a href="/"><img src="{% static 'img/back.png' %}"  height="42" width="42" alt="" /></a>
+    </div>
+    <div class="brand">
+      <a href="#">Add Subscriber</a>
+    </div>
+  </div>
+    </section>
+<br><br><br>
+{#<div class="form">#}
+{#    <div class="name">#}
+{#        <label for="name">Name</label>#}
+{#        <input type="name" name="name" id="name" required>#}
+{#    </div>#}
+{#    <br>#}
+{#    <div class="number">#}
+{#        <label for="number">Number</label>#}
+{#        <input type="number" name="number" id="number" required>#}
+{#    </div>#}
+{#    <br>#}
+{#    <div>#}
+{#        <button type="button" value="add" id="add">Add</button>#}
+{#    </div>#}
+{#</div>#}
+
+<form action="addsubscriber" method="post">
+{% csrf_token %}
+  Name: <input type="text" id="name" name="name" />
+    <br><br>
+  Number: <input type="number" id="number" name="number"/>
+    <br><br>
+  <br>
+  <input type="submit" value="Add" name="button" class="button"/> <input type="reset" class="button">
+</form>
+<br><br>
+<label >Name : </label>
+<label id="lname" name="lname"></label><br>
+<label>Number : </label>
+<label id="lnumber"></label>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+    $('#name').change(function() {
+      $('#lname').val($('#name').val());
+            });
+        });
+</script>
+
+</body>
+{#    <script>#}
+{#    document.getElementById('name').innerHTML = "hh";#}
+{#</script>#}
+</html>
