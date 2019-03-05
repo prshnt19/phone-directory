@@ -22,21 +22,6 @@
   </div>
     </section>
 <br><br><br>
-{#<div class="form">#}
-{#    <div class="name">#}
-{#        <label for="name">Name</label>#}
-{#        <input type="name" name="name" id="name" required>#}
-{#    </div>#}
-{#    <br>#}
-{#    <div class="number">#}
-{#        <label for="number">Number</label>#}
-{#        <input type="number" name="number" id="number" required>#}
-{#    </div>#}
-{#    <br>#}
-{#    <div>#}
-{#        <button type="button" value="add" id="add">Add</button>#}
-{#    </div>#}
-{#</div>#}
 
 <form action="addsubscriber" method="post">
 {% csrf_token %}
@@ -47,19 +32,6 @@
   <br>
   <input type="submit" value="Add" name="button" class="button"/> <input type="reset" class="button">
 </form>
-<br><br>
-<label >Name : </label>
-<label id="lname" name="lname"></label><br>
-<label>Number : </label>
-<label id="lnumber"></label>
-
-<script type="text/javascript">
-        $(document).ready(function () {
-    $('#name').change(function() {
-      $('#lname').val($('#name').val());
-            });
-        });
-</script>
 
 </body>
 {#    <script>#}
