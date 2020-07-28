@@ -1,2 +1,2 @@
-# phone-directory
+# Phone Directory
 The project is in Django.
