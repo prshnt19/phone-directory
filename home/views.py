@@ -4,9 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 
 
-# Create your views here.
-
-
 def phonedir(request):
     subscibers = (PhoneDirectory.objects.all())
     return render(request, '../index.html', {'subscribers': subscibers})
